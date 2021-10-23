@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'attendee',
         'passwords' => 'users',
     ],
 
@@ -41,11 +41,29 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
+        'attendee' => [
+            'driver' => 'jwt',
+            'provider' => 'attendee',
             'hash' => false,
         ],
+
+        'exhibitor' => [
+            'driver' => 'jwt',
+            'provider' => 'exhibitor',
+            'hash' => false,
+        ],
+
+        'presenter' => [
+            'driver' => 'jwt',
+            'provider' => 'presenter',
+            'hash' => false,
+        ],
+
+        'organizer' => [
+            'driver' => 'jwt',
+            'provider' => 'organizer',
+            'hash' => false,
+        ]
     ],
 
     /*
@@ -65,10 +83,38 @@ return [
     |
     */
 
+    // 'providers' => [
+    //     'users' => [
+    //         'driver' => 'eloquent',
+    //         'model' => App\Entities\User::class,
+    //     ],
+
+    //     // 'users' => [
+    //     //     'driver' => 'database',
+    //     //     'table' => 'users',
+    //     // ],
+    // ],
+
+
     'providers' => [
-        'users' => [
+        'attendee' => [
             'driver' => 'eloquent',
-            'model' => App\Entities\User::class,
+            'model' => App\Models\Registration::class,
+        ],
+
+        'exhibitor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Exhibitor::class,
+        ],
+
+        'presenter' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Instructor::class,
+        ],
+
+        'organizer' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
